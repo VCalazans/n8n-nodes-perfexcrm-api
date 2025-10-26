@@ -19,17 +19,17 @@ import * as taskOps from './resources/task/operations';
 import { ticketOperations, ticketFields, ticketOps } from './resources/ticket';
 import { calendarEventOperations, calendarEventFields, calendarEventOps } from './resources/calendarEvent';
 
-export class PerfexCrm implements INodeType {
+class PerfexCrmApi implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'PerfexCRM',
-		name: 'perfexCrm',
-		icon: 'file:../../icons/perfexcrm.svg',
+		displayName: 'Perfex CRM API',
+		name: 'perfexCrmApi',
+		icon: 'file:perfexcrm.svg',
 		group: ['input'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description: 'Consume data from PerfexCRM API',
 		defaults: {
-			name: 'PerfexCRM',
+			name: 'Perfex CRM API',
 		},
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
@@ -262,3 +262,9 @@ export class PerfexCrm implements INodeType {
 		return [returnData];
 	}
 }
+
+export default PerfexCrmApi;
+
+// Provide a named export as well for maximum compatibility with different
+// n8n loaders that may expect either a default or a named export.
+export { PerfexCrmApi };

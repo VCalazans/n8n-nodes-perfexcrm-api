@@ -1,0 +1,6 @@
+{
+	"node": "dist/nodes/PerfexCrmApi/PerfexCrmApi.node.js",
+	"credentials": [
+		"dist/credentials/PerfexCrmApi.credentials.js"
+	]
+}

@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-perfexcrm-api",
-	"version": "0.1.0",
+	"version": "0.2.2",
 	"description": "n8n node for PerfexCRM API integration with full CRUD operations for Calendar Events, Customers, Items, Leads, Subscriptions, Tasks, and Tickets (requires PerfexCRM API module)",
 	"license": "MIT",
 	"homepage": "https://github.com/VCalazans/n8n-nodes-perfexcrm-api",
@@ -40,20 +40,18 @@
 		"dev": "n8n-node dev",
 		"lint": "n8n-node lint",
 		"lint:fix": "n8n-node lint --fix",
-		"release": "n8n-node release",
-		"prepublishOnly": "n8n-node prerelease"
+		"release": "n8n-node release"
 	},
 	"files": [
 		"dist"
 	],
 	"n8n": {
 		"n8nNodesApiVersion": 1,
-		"strict": true,
 		"credentials": [
 			"dist/credentials/PerfexCrmApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/PerfexCRM/PerfexCrm.node.js"
+			"dist/nodes/PerfexCrmApi/PerfexCrmApi.node.js"
 		]
 	},
 	"devDependencies": {
