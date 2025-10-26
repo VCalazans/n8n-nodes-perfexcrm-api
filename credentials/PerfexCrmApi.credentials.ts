@@ -1,4 +1,9 @@
-import type { ICredentialType, INodeProperties } from 'n8n-workflow';
+import type { 
+	IAuthenticateGeneric, 
+	ICredentialTestRequest, 
+	ICredentialType, 
+	INodeProperties 
+} from 'n8n-workflow';
 
 export class PerfexCrmApi implements ICredentialType {
 	name = 'perfexCrmApi';
@@ -30,13 +35,20 @@ export class PerfexCrmApi implements ICredentialType {
 		},
 	];
 
-	test = {
-		request: {
-			baseURL: '={{$credentials.baseUrl}}/api',
-			url: '/leads',
+	authenticate: IAuthenticateGeneric = {
+		type: 'generic',
+		properties: {
 			headers: {
 				'authtoken': '={{$credentials.apiToken}}',
 			},
+		},
+	};
+
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: '={{$credentials.baseUrl}}/api',
+			url: '/leads',
+			method: 'GET',
 		},
 	};
 }

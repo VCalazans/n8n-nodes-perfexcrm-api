@@ -1,8 +1,7 @@
-import { 
-	NodeConnectionTypes, 
-	type INodeType, 
-	type INodeTypeDescription, 
-	type IExecuteFunctions, 
+import {
+	type INodeType,
+	type INodeTypeDescription,
+	type IExecuteFunctions,
 	type INodeExecutionData,
 	NodeOperationError,
 } from 'n8n-workflow';
@@ -19,7 +18,7 @@ import * as taskOps from './resources/task/operations';
 import { ticketOperations, ticketFields, ticketOps } from './resources/ticket';
 import { calendarEventOperations, calendarEventFields, calendarEventOps } from './resources/calendarEvent';
 
-class PerfexCrmApi implements INodeType {
+export class PerfexCrmApi implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Perfex CRM API',
 		name: 'perfexCrmApi',
@@ -32,8 +31,8 @@ class PerfexCrmApi implements INodeType {
 			name: 'Perfex CRM API',
 		},
 		usableAsTool: true,
-		inputs: [NodeConnectionTypes.Main],
-		outputs: [NodeConnectionTypes.Main],
+		inputs: ['main'],
+		outputs: ['main'],
 		credentials: [
 			{
 				name: 'perfexCrmApi',
@@ -248,8 +247,8 @@ class PerfexCrmApi implements INodeType {
 				}
 			} catch (error) {
 				if (this.continueOnFail()) {
-					returnData.push({ 
-						error: error.message, 
+					returnData.push({
+						error: error.message,
 						json: {},
 						pairedItem: { item: i },
 					});
@@ -264,7 +263,3 @@ class PerfexCrmApi implements INodeType {
 }
 
 export default PerfexCrmApi;
-
-// Provide a named export as well for maximum compatibility with different
-// n8n loaders that may expect either a default or a named export.
-export { PerfexCrmApi };
