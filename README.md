@@ -8,11 +8,11 @@ This is an n8n community node that provides comprehensive integration with [Perf
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
-## � Prerequisites - PerfexCRM API Module
+## 📋 Prerequisites - PerfexCRM API Module
 
 This n8n node requires the PerfexCRM API module to be installed on your PerfexCRM instance.
 
-### 👉 [Purchase the PerfexCRM API Module](https://perfexapi.com/)
+### 👉 [Purchase the PerfexCRM API Module](https://codecanyon.net/item/rest-api-for-perfex-crm/25278359)
 
 The module provides:
 - RESTful API endpoints for PerfexCRM entities
@@ -301,7 +301,7 @@ Found a bug or want to add a feature? Contributions are welcome!
 
 - [GitHub Issues](https://github.com/VCalazans/n8n-nodes-perfexcrm-api/issues) - Bug reports and feature requests
 - [n8n Community Forum](https://community.n8n.io/) - General n8n discussions
-- [PerfexCRM Documentation](https://help.perfexcrm.com/) - PerfexCRM API documentation
+- [PerfexCRM API Documentation](https://perfexcrm.themesic.com/apiguide/) - Official PerfexCRM API Rest documentation
 
 ## Changelog
 
@@ -323,7 +323,8 @@ Found a bug or want to add a feature? Contributions are welcome!
 ## Resources
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
-- [PerfexCRM API Documentation](https://help.perfexcrm.com/api-documentation)
+- [PerfexCRM API Documentation](https://perfexcrm.themesic.com/apiguide/) - Official PerfexCRM API Rest documentation
+- [PerfexCRM API Module](https://codecanyon.net/item/rest-api-for-perfex-crm/25278359) - Purchase the required API module
 - [n8n Node Development Guide](https://docs.n8n.io/integrations/creating-nodes/)
 
 ---
