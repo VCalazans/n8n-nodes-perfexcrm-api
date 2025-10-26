@@ -92,44 +92,44 @@ export const taskFields: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Lead',
-				value: 'lead',
-			},
-			{
-				name: 'Customer',
-				value: 'customer',
-			},
-			{
-				name: 'Invoice',
-				value: 'invoice',
-			},
-			{
-				name: 'Project',
-				value: 'project',
-			},
-			{
-				name: 'Quotation',
-				value: 'quotation',
+				name: 'Annex',
+				value: 'annex',
 			},
 			{
 				name: 'Contract',
 				value: 'contract',
 			},
 			{
-				name: 'Annex',
-				value: 'annex',
-			},
-			{
-				name: 'Ticket',
-				value: 'ticket',
+				name: 'Customer',
+				value: 'customer',
 			},
 			{
 				name: 'Expense',
 				value: 'expense',
 			},
 			{
+				name: 'Invoice',
+				value: 'invoice',
+			},
+			{
+				name: 'Lead',
+				value: 'lead',
+			},
+			{
+				name: 'Project',
+				value: 'project',
+			},
+			{
 				name: 'Proposal',
 				value: 'proposal',
+			},
+			{
+				name: 'Quotation',
+				value: 'quotation',
+			},
+			{
+				name: 'Ticket',
+				value: 'ticket',
 			},
 		],
 		default: 'project',
@@ -375,44 +375,44 @@ export const taskFields: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Lead',
-				value: 'lead',
-			},
-			{
-				name: 'Customer',
-				value: 'customer',
-			},
-			{
-				name: 'Invoice',
-				value: 'invoice',
-			},
-			{
-				name: 'Project',
-				value: 'project',
-			},
-			{
-				name: 'Quotation',
-				value: 'quotation',
+				name: 'Annex',
+				value: 'annex',
 			},
 			{
 				name: 'Contract',
 				value: 'contract',
 			},
 			{
-				name: 'Annex',
-				value: 'annex',
-			},
-			{
-				name: 'Ticket',
-				value: 'ticket',
+				name: 'Customer',
+				value: 'customer',
 			},
 			{
 				name: 'Expense',
 				value: 'expense',
 			},
 			{
+				name: 'Invoice',
+				value: 'invoice',
+			},
+			{
+				name: 'Lead',
+				value: 'lead',
+			},
+			{
+				name: 'Project',
+				value: 'project',
+			},
+			{
 				name: 'Proposal',
 				value: 'proposal',
+			},
+			{
+				name: 'Quotation',
+				value: 'quotation',
+			},
+			{
+				name: 'Ticket',
+				value: 'ticket',
 			},
 		],
 		default: 'project',
