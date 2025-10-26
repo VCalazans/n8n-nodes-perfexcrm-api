@@ -1,0 +1,9 @@
+{
+	"node": "dist/nodes/PerfexCRM/PerfexCrm.node.js",
+	"credentials": [
+		{
+			"name": "perfexCrmApi",
+			"displayName": "PerfexCRM API"
+		}
+	]
+}

@@ -1,0 +1,25 @@
+# Build output
+dist
+
+# Dependencies
+node_modules
+
+# Development files
+*.log
+.DS_Store
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+*.tmp
+.cache/
