@@ -28,6 +28,7 @@ import {
 	expenseCategoryFields,
 	expenseCategoryOps,
 } from './resources/expenseCategory';
+import { expenseOperations, expenseFields, expenseOps } from './resources/expense';
 
 export class PerfexCrmApi implements INodeType {
 	description: INodeTypeDescription = {
@@ -77,6 +78,10 @@ export class PerfexCrmApi implements INodeType {
 						value: 'estimate',
 					},
 					{
+						name: 'Expense',
+						value: 'expense',
+					},
+					{
 						name: 'Expense Category',
 						value: 'expenseCategory',
 					},
@@ -122,6 +127,8 @@ export class PerfexCrmApi implements INodeType {
 			...ticketFields,
 			...estimateOperations,
 			...estimateFields,
+			...expenseOperations,
+			...expenseFields,
 			...expenseCategoryOperations,
 			...expenseCategoryFields,
 			...timesheetOperations,
@@ -314,6 +321,29 @@ export class PerfexCrmApi implements INodeType {
 							break;
 						case 'update':
 							returnData.push(...(await estimateOps.update.call(this, i)));
+							break;
+						default:
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
+					}
+				} else if (resource === 'expense') {
+					switch (operation) {
+						case 'create':
+							returnData.push(...(await expenseOps.create.call(this, i)));
+							break;
+						case 'delete':
+							returnData.push(...(await expenseOps.del.call(this, i)));
+							break;
+						case 'get':
+							returnData.push(...(await expenseOps.get.call(this, i)));
+							break;
+						case 'search':
+							returnData.push(...(await expenseOps.search.call(this, i)));
+							break;
+						case 'update':
+							returnData.push(...(await expenseOps.update.call(this, i)));
 							break;
 						default:
 							throw new NodeOperationError(
