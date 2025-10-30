@@ -45,7 +45,7 @@ export async function deleteCustomer(
 
 	const response = await this.helpers.httpRequest({
 		method: 'DELETE',
-		url: `${baseUrl}/api/customers/${customerId}`,
+		url: `${baseUrl}/api/delete/customers/${customerId}`,
 		headers: {
 			'authtoken': credentials.apiToken as string,
 			'Content-Type': 'application/json',
@@ -109,6 +109,44 @@ export async function getAllCustomers(
 			json: response as IDataObject,
 		},
 	];
+}
+
+export async function searchCustomer(
+	this: IExecuteFunctions,
+	index: number,
+): Promise<INodeExecutionData[]> {
+	const credentials = await this.getCredentials('perfexCrmApi');
+	const baseUrl = credentials.baseUrl as string;
+	
+	const keysearch = this.getNodeParameter('keysearch', index) as string;
+
+	const response = await this.helpers.httpRequest({
+		method: 'GET',
+		url: `${baseUrl}/api/customers/search/${encodeURIComponent(keysearch)}`,
+		headers: {
+			'authtoken': credentials.apiToken as string,
+			'Content-Type': 'application/json',
+		},
+		json: true,
+	});
+
+	const returnData: INodeExecutionData[] = [];
+	
+	if (Array.isArray(response)) {
+		response.forEach(item => {
+			returnData.push({
+				json: item,
+				pairedItem: { item: index },
+			});
+		});
+	} else {
+		returnData.push({
+			json: response as IDataObject,
+			pairedItem: { item: index },
+		});
+	}
+
+	return returnData;
 }
 
 export async function updateCustomer(

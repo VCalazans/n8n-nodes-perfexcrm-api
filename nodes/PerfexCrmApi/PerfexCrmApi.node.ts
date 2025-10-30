@@ -149,6 +149,9 @@ export class PerfexCrmApi implements INodeType {
 						case 'getAll':
 							returnData.push(...await customerOps.getAllCustomers.call(this));
 							break;
+						case 'search':
+							returnData.push(...await customerOps.searchCustomer.call(this, i));
+							break;
 						case 'update':
 							returnData.push(...await customerOps.updateCustomer.call(this, i));
 							break;

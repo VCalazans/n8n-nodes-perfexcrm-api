@@ -37,6 +37,12 @@ export const customerOperations: INodeProperties[] = [
 				action: 'Get many customers',
 			},
 			{
+				name: 'Search',
+				value: 'search',
+				description: 'Search for customers',
+				action: 'Search customers',
+			},
+			{
 				name: 'Update',
 				value: 'update',
 				description: 'Update a customer',
@@ -269,6 +275,24 @@ export const customerFields: INodeProperties[] = [
 		},
 		default: '',
 		description: 'ID of the customer to retrieve',
+	},
+
+	// ----------------------------------
+	//         Customer: search
+	// ----------------------------------
+	{
+		displayName: 'Search Keywords',
+		name: 'keysearch',
+		type: 'string',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['customer'],
+				operation: ['search'],
+			},
+		},
+		default: '',
+		description: 'Keywords to search for customers',
 	},
 
 	// ----------------------------------
