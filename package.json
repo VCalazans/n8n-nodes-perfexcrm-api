@@ -1,7 +1,7 @@
 {
 	"name": "n8n-nodes-perfexcrm-api",
-	"version": "0.2.8",
-	"description": "n8n node for PerfexCRM API integration with full CRUD operations for Calendar Events, Customers, Items, Leads, Subscriptions, Tasks, and Tickets (requires PerfexCRM API module)",
+	"version": "0.2.9",
+	"description": "n8n node for PerfexCRM API integration with full CRUD operations for Calendar Events, Customers, Items, Leads, Subscriptions, Tasks, Tickets, and Timesheets (requires PerfexCRM API module)",
 	"license": "MIT",
 	"homepage": "https://github.com/VCalazans/n8n-nodes-perfexcrm-api",
 	"keywords": [
@@ -15,7 +15,8 @@
 		"leads",
 		"tasks",
 		"tickets",
-		"subscriptions"
+		"subscriptions",
+		"timesheets"
 	],
 	"author": {
 		"name": "Victor Calazans",

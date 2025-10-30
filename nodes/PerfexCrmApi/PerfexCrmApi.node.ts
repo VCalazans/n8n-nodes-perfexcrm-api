@@ -17,6 +17,7 @@ import { taskOperations, taskFields } from './resources/task/description';
 import * as taskOps from './resources/task/operations';
 import { ticketOperations, ticketFields, ticketOps } from './resources/ticket';
 import { calendarEventOperations, calendarEventFields, calendarEventOps } from './resources/calendarEvent';
+import { timesheetOperations, timesheetFields, timesheetOps } from './resources/timesheet';
 
 export class PerfexCrmApi implements INodeType {
 	description: INodeTypeDescription = {
@@ -81,6 +82,10 @@ export class PerfexCrmApi implements INodeType {
 						name: 'Ticket',
 						value: 'ticket',
 					},
+					{
+						name: 'Timesheet',
+						value: 'timesheet',
+					},
 				],
 				default: 'customer',
 			},
@@ -97,6 +102,8 @@ export class PerfexCrmApi implements INodeType {
 			...taskFields,
 			...ticketOperations,
 			...ticketFields,
+			...timesheetOperations,
+			...timesheetFields,
 		],
 	};
 
@@ -238,6 +245,26 @@ export class PerfexCrmApi implements INodeType {
 							break;
 						case 'update':
 							returnData.push(...await ticketOps.update.call(this, i));
+							break;
+						default:
+							throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not known!`);
+					}
+				} else if (resource === 'timesheet') {
+					switch (operation) {
+						case 'create':
+							returnData.push(...await timesheetOps.create.call(this, i));
+							break;
+						case 'delete':
+							returnData.push(...await timesheetOps.del.call(this, i));
+							break;
+						case 'get':
+							returnData.push(...await timesheetOps.get.call(this, i));
+							break;
+						case 'getAll':
+							returnData.push(...await timesheetOps.getAll.call(this, i));
+							break;
+						case 'update':
+							returnData.push(...await timesheetOps.update.call(this, i));
 							break;
 						default:
 							throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not known!`);
