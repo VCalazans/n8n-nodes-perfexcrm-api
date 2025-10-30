@@ -16,8 +16,13 @@ import * as subscriptionOps from './resources/subscription/operations';
 import { taskOperations, taskFields } from './resources/task/description';
 import * as taskOps from './resources/task/operations';
 import { ticketOperations, ticketFields, ticketOps } from './resources/ticket';
-import { calendarEventOperations, calendarEventFields, calendarEventOps } from './resources/calendarEvent';
+import {
+	calendarEventOperations,
+	calendarEventFields,
+	calendarEventOps,
+} from './resources/calendarEvent';
 import { timesheetOperations, timesheetFields, timesheetOps } from './resources/timesheet';
+import { estimateOperations, estimateFields, estimateOps } from './resources/estimate';
 
 export class PerfexCrmApi implements INodeType {
 	description: INodeTypeDescription = {
@@ -43,7 +48,7 @@ export class PerfexCrmApi implements INodeType {
 		requestDefaults: {
 			baseURL: '={{$credentials.baseUrl}}/api',
 			headers: {
-				'authtoken': '={{$credentials.apiToken}}',
+				authtoken: '={{$credentials.apiToken}}',
 				'Content-Type': 'application/json',
 			},
 		},
@@ -61,6 +66,10 @@ export class PerfexCrmApi implements INodeType {
 					{
 						name: 'Customer',
 						value: 'customer',
+					},
+					{
+						name: 'Estimate',
+						value: 'estimate',
 					},
 					{
 						name: 'Item',
@@ -102,6 +111,8 @@ export class PerfexCrmApi implements INodeType {
 			...taskFields,
 			...ticketOperations,
 			...ticketFields,
+			...estimateOperations,
+			...estimateFields,
 			...timesheetOperations,
 			...timesheetFields,
 		],
@@ -118,159 +129,209 @@ export class PerfexCrmApi implements INodeType {
 				if (resource === 'calendarEvent') {
 					switch (operation) {
 						case 'create':
-							returnData.push(...await calendarEventOps.create.call(this, i));
+							returnData.push(...(await calendarEventOps.create.call(this, i)));
 							break;
 						case 'delete':
-							returnData.push(...await calendarEventOps.del.call(this, i));
+							returnData.push(...(await calendarEventOps.del.call(this, i)));
 							break;
 						case 'get':
-							returnData.push(...await calendarEventOps.get.call(this, i));
+							returnData.push(...(await calendarEventOps.get.call(this, i)));
 							break;
 						case 'getAll':
-							returnData.push(...await calendarEventOps.getAll.call(this));
+							returnData.push(...(await calendarEventOps.getAll.call(this)));
 							break;
 						case 'update':
-							returnData.push(...await calendarEventOps.update.call(this, i));
+							returnData.push(...(await calendarEventOps.update.call(this, i)));
 							break;
 						default:
-							throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not known!`);
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
 					}
 				} else if (resource === 'customer') {
 					switch (operation) {
 						case 'create':
-							returnData.push(...await customerOps.createCustomer.call(this, i));
+							returnData.push(...(await customerOps.createCustomer.call(this, i)));
 							break;
 						case 'delete':
-							returnData.push(...await customerOps.deleteCustomer.call(this, i));
+							returnData.push(...(await customerOps.deleteCustomer.call(this, i)));
 							break;
 						case 'get':
-							returnData.push(...await customerOps.getCustomer.call(this, i));
+							returnData.push(...(await customerOps.getCustomer.call(this, i)));
 							break;
 						case 'getAll':
-							returnData.push(...await customerOps.getAllCustomers.call(this));
+							returnData.push(...(await customerOps.getAllCustomers.call(this)));
 							break;
 						case 'search':
-							returnData.push(...await customerOps.searchCustomer.call(this, i));
+							returnData.push(...(await customerOps.searchCustomer.call(this, i)));
 							break;
 						case 'update':
-							returnData.push(...await customerOps.updateCustomer.call(this, i));
+							returnData.push(...(await customerOps.updateCustomer.call(this, i)));
 							break;
 						default:
-							throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not known!`);
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
 					}
 				} else if (resource === 'item') {
 					switch (operation) {
 						case 'get':
-							returnData.push(...await itemOps.getItem.call(this, i));
+							returnData.push(...(await itemOps.getItem.call(this, i)));
 							break;
 						case 'search':
-							returnData.push(...await itemOps.searchItems.call(this, i));
+							returnData.push(...(await itemOps.searchItems.call(this, i)));
 							break;
 						default:
-							throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not known!`);
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
 					}
 				} else if (resource === 'lead') {
 					switch (operation) {
 						case 'create':
-							returnData.push(...await leadOperations.create.call(this, i));
+							returnData.push(...(await leadOperations.create.call(this, i)));
 							break;
 						case 'delete':
-							returnData.push(...await leadOperations.del.call(this, i));
+							returnData.push(...(await leadOperations.del.call(this, i)));
 							break;
 						case 'get':
-							returnData.push(...await leadOperations.get.call(this, i));
+							returnData.push(...(await leadOperations.get.call(this, i)));
 							break;
 						case 'getAll':
-							returnData.push(...await leadOperations.getAll.call(this));
+							returnData.push(...(await leadOperations.getAll.call(this)));
 							break;
 						case 'search':
-							returnData.push(...await leadOperations.search.call(this, i));
+							returnData.push(...(await leadOperations.search.call(this, i)));
 							break;
 						case 'update':
-							returnData.push(...await leadOperations.update.call(this, i));
+							returnData.push(...(await leadOperations.update.call(this, i)));
 							break;
 						default:
-							throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not known!`);
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
 					}
 				} else if (resource === 'subscription') {
 					switch (operation) {
 						case 'create':
-							returnData.push(...await subscriptionOps.createSubscription.call(this, i));
+							returnData.push(...(await subscriptionOps.createSubscription.call(this, i)));
 							break;
 						case 'delete':
-							returnData.push(...await subscriptionOps.deleteSubscription.call(this, i));
+							returnData.push(...(await subscriptionOps.deleteSubscription.call(this, i)));
 							break;
 						case 'get':
-							returnData.push(...await subscriptionOps.getSubscription.call(this, i));
+							returnData.push(...(await subscriptionOps.getSubscription.call(this, i)));
 							break;
 						case 'getAll':
-							returnData.push(...await subscriptionOps.getAllSubscriptions.call(this));
+							returnData.push(...(await subscriptionOps.getAllSubscriptions.call(this)));
 							break;
 						case 'update':
-							returnData.push(...await subscriptionOps.updateSubscription.call(this, i));
+							returnData.push(...(await subscriptionOps.updateSubscription.call(this, i)));
 							break;
 						default:
-							throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not known!`);
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
 					}
 				} else if (resource === 'task') {
 					switch (operation) {
 						case 'create':
-							returnData.push(...await taskOps.create.call(this, i));
+							returnData.push(...(await taskOps.create.call(this, i)));
 							break;
 						case 'delete':
-							returnData.push(...await taskOps.del.call(this, i));
+							returnData.push(...(await taskOps.del.call(this, i)));
 							break;
 						case 'get':
-							returnData.push(...await taskOps.get.call(this, i));
+							returnData.push(...(await taskOps.get.call(this, i)));
 							break;
 						case 'search':
-							returnData.push(...await taskOps.search.call(this, i));
+							returnData.push(...(await taskOps.search.call(this, i)));
 							break;
 						case 'update':
-							returnData.push(...await taskOps.update.call(this, i));
+							returnData.push(...(await taskOps.update.call(this, i)));
 							break;
 						default:
-							throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not known!`);
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
 					}
 				} else if (resource === 'ticket') {
 					switch (operation) {
 						case 'create':
-							returnData.push(...await ticketOps.create.call(this, i));
+							returnData.push(...(await ticketOps.create.call(this, i)));
 							break;
 						case 'delete':
-							returnData.push(...await ticketOps.del.call(this, i));
+							returnData.push(...(await ticketOps.del.call(this, i)));
 							break;
 						case 'get':
-							returnData.push(...await ticketOps.get.call(this, i));
+							returnData.push(...(await ticketOps.get.call(this, i)));
 							break;
 						case 'search':
-							returnData.push(...await ticketOps.search.call(this, i));
+							returnData.push(...(await ticketOps.search.call(this, i)));
 							break;
 						case 'update':
-							returnData.push(...await ticketOps.update.call(this, i));
+							returnData.push(...(await ticketOps.update.call(this, i)));
 							break;
 						default:
-							throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not known!`);
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
+					}
+				} else if (resource === 'estimate') {
+					switch (operation) {
+						case 'create':
+							returnData.push(...(await estimateOps.create.call(this, i)));
+							break;
+						case 'delete':
+							returnData.push(...(await estimateOps.del.call(this, i)));
+							break;
+						case 'get':
+							returnData.push(...(await estimateOps.get.call(this, i)));
+							break;
+						case 'getAll':
+							returnData.push(...(await estimateOps.getAll.call(this)));
+							break;
+						case 'search':
+							returnData.push(...(await estimateOps.search.call(this, i)));
+							break;
+						case 'update':
+							returnData.push(...(await estimateOps.update.call(this, i)));
+							break;
+						default:
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
 					}
 				} else if (resource === 'timesheet') {
 					switch (operation) {
 						case 'create':
-							returnData.push(...await timesheetOps.create.call(this, i));
+							returnData.push(...(await timesheetOps.create.call(this, i)));
 							break;
 						case 'delete':
-							returnData.push(...await timesheetOps.del.call(this, i));
+							returnData.push(...(await timesheetOps.del.call(this, i)));
 							break;
 						case 'get':
-							returnData.push(...await timesheetOps.get.call(this, i));
+							returnData.push(...(await timesheetOps.get.call(this, i)));
 							break;
 						case 'getAll':
-							returnData.push(...await timesheetOps.getAll.call(this, i));
+							returnData.push(...(await timesheetOps.getAll.call(this, i)));
 							break;
 						case 'update':
-							returnData.push(...await timesheetOps.update.call(this, i));
+							returnData.push(...(await timesheetOps.update.call(this, i)));
 							break;
 						default:
-							throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not known!`);
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
 					}
 				} else {
 					throw new NodeOperationError(this.getNode(), `The resource "${resource}" is not known!`);
