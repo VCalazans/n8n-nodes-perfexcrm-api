@@ -34,7 +34,7 @@ export const estimateFields: INodeProperties[] = [
     required: true,
     displayOptions: { show: { resource: ['estimate'], operation: ['create'] } },
     default: 0,
-    description: 'Customer id',
+    description: 'Customer ID',
   },
   {
     displayName: 'Number',
