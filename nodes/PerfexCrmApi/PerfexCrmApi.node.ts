@@ -36,6 +36,7 @@ import { paymentModeOperations, paymentModeFields, paymentModeOps } from './reso
 import { projectOperations, projectFields, projectOps } from './resources/project';
 import { proposalOperations, proposalFields, proposalOps } from './resources/proposal';
 import { staffOperations, staffFields, staffOps } from './resources/staff';
+import { taxOperations, taxFields, taxOps } from './resources/tax';
 
 export class PerfexCrmApi implements INodeType {
 	description: INodeTypeDescription = {
@@ -137,6 +138,10 @@ export class PerfexCrmApi implements INodeType {
 						value: 'task',
 					},
 					{
+						name: 'Tax',
+						value: 'tax',
+					},
+					{
 						name: 'Ticket',
 						value: 'ticket',
 					},
@@ -180,6 +185,8 @@ export class PerfexCrmApi implements INodeType {
 			...proposalFields,
 			...staffOperations,
 			...staffFields,
+			...taxOperations,
+			...taxFields,
 			...timesheetOperations,
 			...timesheetFields,
 		],
@@ -441,6 +448,17 @@ export class PerfexCrmApi implements INodeType {
 							break;
 						case 'update':
 							returnData.push(...(await taskOps.update.call(this, i)));
+							break;
+						default:
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
+					}
+				} else if (resource === 'tax') {
+					switch (operation) {
+						case 'getAll':
+							returnData.push(...(await taxOps.getAll.call(this)));
 							break;
 						default:
 							throw new NodeOperationError(
