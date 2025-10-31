@@ -31,6 +31,7 @@ import {
 import { expenseOperations, expenseFields, expenseOps } from './resources/expense';
 import { invoiceOperations, invoiceFields, invoiceOps } from './resources/invoice';
 import { milestoneOperations, milestoneFields, milestoneOps } from './resources/milestone';
+import { paymentOperations, paymentFields, paymentOps } from './resources/payment';
 import { paymentModeOperations, paymentModeFields, paymentModeOps } from './resources/paymentMode';
 
 export class PerfexCrmApi implements INodeType {
@@ -105,6 +106,10 @@ export class PerfexCrmApi implements INodeType {
 						value: 'milestone',
 					},
 					{
+						name: 'Payment',
+						value: 'payment',
+					},
+					{
 						name: 'Payment Mode',
 						value: 'paymentMode',
 					},
@@ -150,6 +155,8 @@ export class PerfexCrmApi implements INodeType {
 			...invoiceFields,
 			...milestoneOperations,
 			...milestoneFields,
+			...paymentOperations,
+			...paymentFields,
 			...paymentModeOperations,
 			...paymentModeFields,
 			...timesheetOperations,
@@ -270,6 +277,23 @@ export class PerfexCrmApi implements INodeType {
 							break;
 						case 'update':
 							returnData.push(...(await milestoneOps.update.call(this, i)));
+							break;
+						default:
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
+					}
+				} else if (resource === 'payment') {
+					switch (operation) {
+						case 'create':
+							returnData.push(...(await paymentOps.create.call(this, i)));
+							break;
+						case 'getAll':
+							returnData.push(...(await paymentOps.getAll.call(this)));
+							break;
+						case 'search':
+							returnData.push(...(await paymentOps.search.call(this, i)));
 							break;
 						default:
 							throw new NodeOperationError(
