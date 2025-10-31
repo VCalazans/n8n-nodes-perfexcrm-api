@@ -30,6 +30,7 @@ import {
 } from './resources/expenseCategory';
 import { expenseOperations, expenseFields, expenseOps } from './resources/expense';
 import { invoiceOperations, invoiceFields, invoiceOps } from './resources/invoice';
+import { milestoneOperations, milestoneFields, milestoneOps } from './resources/milestone';
 
 export class PerfexCrmApi implements INodeType {
 	description: INodeTypeDescription = {
@@ -99,6 +100,10 @@ export class PerfexCrmApi implements INodeType {
 						value: 'lead',
 					},
 					{
+						name: 'Milestone',
+						value: 'milestone',
+					},
+					{
 						name: 'Subscription',
 						value: 'subscription',
 					},
@@ -138,6 +143,8 @@ export class PerfexCrmApi implements INodeType {
 			...expenseCategoryFields,
 			...invoiceOperations,
 			...invoiceFields,
+			...milestoneOperations,
+			...milestoneFields,
 			...timesheetOperations,
 			...timesheetFields,
 		],
@@ -233,6 +240,29 @@ export class PerfexCrmApi implements INodeType {
 							break;
 						case 'update':
 							returnData.push(...(await leadOperations.update.call(this, i)));
+							break;
+						default:
+							throw new NodeOperationError(
+								this.getNode(),
+								`The operation "${operation}" is not known!`,
+							);
+					}
+				} else if (resource === 'milestone') {
+					switch (operation) {
+						case 'create':
+							returnData.push(...(await milestoneOps.create.call(this, i)));
+							break;
+						case 'delete':
+							returnData.push(...(await milestoneOps.del.call(this, i)));
+							break;
+						case 'get':
+							returnData.push(...(await milestoneOps.get.call(this, i)));
+							break;
+						case 'search':
+							returnData.push(...(await milestoneOps.search.call(this, i)));
+							break;
+						case 'update':
+							returnData.push(...(await milestoneOps.update.call(this, i)));
 							break;
 						default:
 							throw new NodeOperationError(
