@@ -20,6 +20,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Tasks (5 operations)
   - Tickets (5 operations)
 - **Over 30 operations** across all resources
+
+## [0.2.9] - 2025-11-02
+
+### Added
+
+- Significant expansion of supported PerfexCRM resources and operations. The node now includes the following new resources and operations:
+  - Timesheets (5 operations: create, delete, get, getMany, update)
+  - Estimates (5 operations: create, delete, get, getMany, update)
+  - Expense Categories (Get Many - lookup: /api/common/expense_category)
+  - Expenses (create, delete, get, search, update)
+  - Invoices (create, delete, get, search, update)
+  - Milestones (create, delete, get, search, update)
+  - Payments (create, getAll, search)
+  - Payment Modes (Get Many - lookup: /api/common/payment_mode)
+  - Projects (create, delete, get, search, update)
+  - Proposals (create, delete, get, search, update)
+  - Staff (create, delete, get, search, update)
+  - Taxes (Get Many - lookup: /api/common/tax_data)
+
+
 - PerfexCRM API credentials support with API token authentication
 - Form-encoded data support for POST operations
 - JSON data support for GET/PUT/DELETE operations
